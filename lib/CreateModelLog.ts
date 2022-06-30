@@ -8,15 +8,6 @@ interface Options {
 }
 
 export default class CreateModelLog {
-  /*
-    @Param {Object} type - type of model to create [e.g. "created", "updated", "deleted"]
-    @Param {Object} models - sequelize models
-    @Param {Object} instance - sequelize instance
-    @Param {Object} model - sequelize model
-    @param {Object} userIdKey - key of the user id reference, default "user_id"
-    @param {Object} modelLogName - name of the model log, default "ModelLog"
-  */
-
   userIdKey: string;
   modelLogName: string;
 
@@ -28,6 +19,16 @@ export default class CreateModelLog {
   actionType: string;
   attributes: string[] | any;
 
+  /**
+   * @constructor
+   * @param  {Type} type type of model to create [e.g. "created", "updated", "deleted"]
+   * @param  {any} models sequelize models
+   * @param  {any} instance sequelize instance
+   * @param  {any} model sequelize model
+   * @param  {Options} options options class
+   * @param  {string} options.userIdKey key of the user id reference, default "user_id"
+   * @param  {string} options.modelLogName name of the model log, default "model_log"
+   */
   constructor(type: Type, models: any, instance: any, model: any, options?: Options) {
     this.userIdKey = "user_id";
     this.modelLogName = "ModelLog";
@@ -54,6 +55,9 @@ export default class CreateModelLog {
     if (type === "deleted") this.Deleted();
   }
 
+  /**
+   * @returns {Promise} void
+   */
   Created = async (): Promise<void> => {
     const value = SequelizeHelpers.MultiGetDataValue(this.instance, this.attributes);
     const data = Object.keys(this.attributes).map((i: any) => ({
@@ -78,6 +82,9 @@ export default class CreateModelLog {
     }
   };
 
+  /**
+   * @returns {Promise} void
+   */
   Updated = async (): Promise<void> => {
     const newValue = SequelizeHelpers.MultiGetDataValue(this.instance, this.attributes);
     const oldValue = SequelizeHelpers.MultiGetPreviousDataValue(this.instance, this.attributes);
@@ -109,6 +116,9 @@ export default class CreateModelLog {
     }
   };
 
+  /**
+   * @returns {Promise} void
+   */
   Deleted = async (): Promise<void> => {
     const value = SequelizeHelpers.MultiGetDataValue(this.instance, this.attributes);
     const data = Object.keys(this.attributes).map((i: any) => ({

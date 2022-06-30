@@ -61,14 +61,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var SequelizeHelpers = __importStar(require("./SequelizeHelpers"));
 var CreateModelLog = /** @class */ (function () {
-    /*
-      @Param {Object} type - type of model to create [e.g. "created", "updated", "deleted"]
-      @Param {Object} models - sequelize models
-      @Param {Object} instance - sequelize instance
-      @Param {Object} model - sequelize model
-      @param {Object} userIdKey - key of the user id reference, default "user_id"
-      @param {Object} modelLogName - name of the model log, default "ModelLog"
-    */
     function CreateModelLog(type, models, instance, model, options) {
         var _this = this;
         this.Created = function () { return __awaiter(_this, void 0, void 0, function () {
@@ -180,8 +172,14 @@ var CreateModelLog = /** @class */ (function () {
                 }
             });
         }); };
-        this.userIdKey = options.userIdKey;
-        this.modelLogName = options.modelLogName;
+        this.userIdKey = "user_id";
+        this.modelLogName = "ModelLog";
+        if (options) {
+            if (options.userIdKey)
+                this.userIdKey = options.userIdKey;
+            if (options.modelLogName)
+                this.modelLogName = options.modelLogName;
+        }
         this.type = type;
         this.models = models;
         this.instance = instance;

@@ -12,7 +12,7 @@ export default class CreateModelLog {
     model: any;
     actionType: string;
     attributes: string[] | any;
-    constructor(type: Type, models: any, instance: any, model: any, options: Options);
+    constructor(type: Type, models: any, instance: any, model: any, options?: Options);
     Created: () => Promise<void>;
     Updated: () => Promise<void>;
     Deleted: () => Promise<void>;

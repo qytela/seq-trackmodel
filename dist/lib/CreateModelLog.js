@@ -61,8 +61,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var SequelizeHelpers = __importStar(require("./SequelizeHelpers"));
 var CreateModelLog = /** @class */ (function () {
+    /**
+     * @constructor
+     * @param  {Type} type type of model to create [e.g. "created", "updated", "deleted"]
+     * @param  {any} models sequelize models
+     * @param  {any} instance sequelize instance
+     * @param  {any} model sequelize model
+     * @param  {Options} options options class
+     * @param  {string} options.userIdKey key of the user id reference, default "user_id"
+     * @param  {string} options.modelLogName name of the model log, default "model_log"
+     */
     function CreateModelLog(type, models, instance, model, options) {
         var _this = this;
+        /**
+         * @returns {Promise} void
+         */
         this.Created = function () { return __awaiter(_this, void 0, void 0, function () {
             var value, data, createdBy, error_1;
             var _this = this;
@@ -97,6 +110,9 @@ var CreateModelLog = /** @class */ (function () {
                 }
             });
         }); };
+        /**
+         * @returns {Promise} void
+         */
         this.Updated = function () { return __awaiter(_this, void 0, void 0, function () {
             var newValue, oldValue, newData, oldData, createdBy, error_2;
             var _this = this;
@@ -137,6 +153,9 @@ var CreateModelLog = /** @class */ (function () {
                 }
             });
         }); };
+        /**
+         * @returns {Promise} void
+         */
         this.Deleted = function () { return __awaiter(_this, void 0, void 0, function () {
             var value, data, createdBy, error_3;
             var _this = this;

@@ -1,3 +1,4 @@
+
 # Sequelize Tracking Model History
 Tracking your model sequelize who created, updated and deleted.
 
@@ -8,10 +9,17 @@ Generate ModelLog and migration with bash script
 ```
 $ sh node_modules/seq-trackmodel/script/generate-model.sh
 ```
-Or manually
+
+OR
+
 Create migration and model named ModelLog (or any name)
 ```
 $ sequelize-cli model:generate --name ModelLog --attributes model_name:string,action_type:string,old_data:text,new_data:text,createdby:integer
+```
+
+Run migration
+```
+$ sequelize-cli db:migrate
 ```
 
 Using hooks to create model log (example: Post Model)

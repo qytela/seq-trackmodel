@@ -29,8 +29,13 @@ export default class CreateModelLog {
   attributes: string[] | any;
 
   constructor(type: Type, models: any, instance: any, model: any, options?: Options) {
-    this.userIdKey = options?.userIdKey ? options.userIdKey : "user_id";
-    this.modelLogName = options?.modelLogName ? options.modelLogName : "ModelLog";
+    this.userIdKey = "user_id";
+    this.modelLogName = "ModelLog";
+
+    if (options) {
+      if (options.userIdKey) this.userIdKey = options.userIdKey;
+      if (options.modelLogName) this.modelLogName = options.modelLogName;
+    }
 
     this.type = type;
     this.models = models;

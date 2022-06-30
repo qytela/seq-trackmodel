@@ -8,6 +8,15 @@ interface Options {
 }
 
 export default class CreateModelLog {
+  /*
+    @Param {Object} type - type of model to create [e.g. "created", "updated", "deleted"]
+    @Param {Object} models - sequelize models
+    @Param {Object} instance - sequelize instance
+    @Param {Object} model - sequelize model
+    @param {Object} userIdKey - key of the user id reference, default "user_id"
+    @param {Object} modelLogName - name of the model log, default "ModelLog"
+  */
+
   userIdKey: string;
   modelLogName: string;
 
@@ -19,18 +28,9 @@ export default class CreateModelLog {
   actionType: string;
   attributes: string[] | any;
 
-  /*
-    @Param {Object} type - type of model to create [e.g. "created", "updated", "deleted"]
-    @Param {Object} models - sequelize models
-    @Param {Object} instance - sequelize instance
-    @Param {Object} model - sequelize model
-    @param {Object} userIdKey - key of the user id reference, default "user_id"
-    @param {Object} modelLogName - name of the model log, default "ModelLog"
-  */
-
-  constructor(type: Type, models: any, instance: any, model: any, options: Options) {
-    this.userIdKey = options.userIdKey;
-    this.modelLogName = options.modelLogName;
+  constructor(type: Type, models: any, instance: any, model: any, options?: Options) {
+    this.userIdKey = options?.userIdKey ? options.userIdKey : "user_id";
+    this.modelLogName = options?.modelLogName ? options.modelLogName : "ModelLog";
 
     this.type = type;
     this.models = models;

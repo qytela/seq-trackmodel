@@ -1,8 +1,15 @@
-# How to use
+# Sequelize Tracking Model History
+Tracking your model sequelize who created, updated and deleted.
 
+# How to use
 Make sure you have [sequelize-cli](https://www.npmjs.com/package/sequelize-cli) installed.
 
-Create migrations and model named ModelLog (or any name)
+Generate ModelLog and migration with bash script
+```
+$ sh node_modules/seq-trackmodel/script/generate-model.sh
+```
+Or manually
+Create migration and model named ModelLog (or any name)
 ```
 $ sequelize-cli model:generate --name ModelLog --attributes model_name:string,action_type:string,old_data:text,new_data:text,createdby:integer
 ```

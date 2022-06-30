@@ -1,0 +1,1 @@
+sequelize-cli model:generate --name ModelLog --attributes model_name:string,action_type:string,old_data:text,new_data:text,createdby:integer
